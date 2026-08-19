@@ -1,0 +1,199 @@
+# Keyword-driven search config for Sarah's digital marketing job search.
+# The fetcher pulls public ATS boards and filters titles/descriptions by these.
+
+# Title keywords that indicate digital marketing roles.
+title_include:
+  - "digital marketing"
+  - "marketing manager"
+  - "marketing coordinator"
+  - "marketing specialist"
+  - "marketing analyst"
+  - "content marketing"
+  - "social media manager"
+  - "social media specialist"
+  - "marketing director"
+  - "seo specialist"
+  - "seo manager"
+  - "ppc specialist"
+  - "paid media specialist"
+  - "email marketing"
+  - "marketing communications"
+  - "brand manager"
+  - "campaign manager"
+  - "growth marketing"
+  - "marketing operations"
+  - "marketing automation"
+  - "demand generation"
+  - "customer marketing"
+  - "product marketing"
+  - "lifecycle marketing"
+
+# Titles to reject outright (level filter).
+title_exclude:
+  - intern
+  - internship
+  - "entry level"
+  - "sr. "
+  - "senior "
+  - "c-level"
+  - "chief"
+  - "executive"
+  - "vp "
+  - "vice president"
+  - director                             # too senior
+  - "head of"
+  - founder
+
+# Description keywords that boost mission-fit (used for scoring, not hard filter).
+mission_keywords:
+  - nonprofit
+  - "non-profit"
+  - "501(c)"
+  - mission
+  - "underserved"
+  - "special needs"
+  - disability
+  - "developmental"
+  - childcare
+  - "child care"
+  - family services
+  - "animal welfare"
+  - "animal shelter"
+  - humane
+  - community
+  - "social services"
+  - healthcare
+  - education
+  - students
+  - "human services"
+
+# Location keywords for Harrisburg area and nearby regions.
+location_keywords:
+  - harrisburg
+  - pennsylvania
+  - pa
+  - "central pennsylvania"
+  - midstate
+  - "-burg"
+  - "lancaster county"
+  - "dauphin county"
+  - "cumberland county"
+  - "perry county"
+  - hershey
+  - mechanicsburg
+  - carlisle
+  - "chambersburg"
+  - lititz
+  - ephrata
+
+# Remote signals in a description.
+remote_keywords:
+  - hybrid
+  - "hybrid work"
+  - "remote option"
+  - "flexible"
+  - "in-office"
+  - "office-based"
+  - onsite
+  - "on-site"
+
+# Seed ATS boards to poll. Keyword-driven means we do not require these,
+# but the pipeline needs concrete public boards to read from.
+# The starter set below: established orgs with public boards.
+# Add/prune freely; each slug maps to:
+#   greenhouse      -> boards-api.greenhouse.io/v1/boards/<slug>/jobs
+#   lever           -> api.lever.co/v0/postings/<slug>
+#   ashby           -> api.ashbyhq.com/posting-api/job-board/<slug>
+#   smartrecruiters -> api.smartrecruiters.com/v1/companies/<slug>/postings
+#   recruitee       -> <slug>.recruitee.com/api/offers/
+seed_boards:
+  greenhouse:
+    - aclu                        # civil rights nonprofit
+    - wikimedia                   # Wikimedia Foundation (nonprofit)
+    - khanacademy                 # education nonprofit
+    - codeorg                     # CS education nonprofit
+    - candid                      # nonprofit data/philanthropy
+    - donorschoose                # classroom-funding nonprofit
+    - newsela                     # K-12 education content
+    - givewell                    # charity evaluator
+    - chanzuckerberginitiative    # philanthropy
+  lever: []
+  ashby: []
+  smartrecruiters:
+    - Kipp                        # KIPP Public Schools (nonprofit)
+  recruitee:
+    - msf                         # MSF International / Doctors Without Borders
+  # 4dayweek.io is a job BOARD: each entry below is a SEARCH QUERY, not a company slug.
+  fourdayweek:
+    - "digital marketing"
+    - "marketing manager"
+    - "social media"
+
+# Location markers that mean a posting is outside acceptable range.
+# Sarah: Harrisburg, PA with ~30-mile radius acceptable; no full remote requirement.
+non_us_location_markers:
+  - india
+  - karnataka
+  - bangalore
+  - bengaluru
+  - delhi
+  - mumbai
+  - united kingdom
+  - uk
+  - london
+  - ireland
+  - dublin
+  - canada
+  - toronto
+  - vancouver
+  - ontario
+  - australia
+  - sydney
+  - melbourne
+  - philippines
+  - manila
+  - kenya
+  - nairobi
+  - nigeria
+  - lagos
+  - ghana
+  - accra
+  - brazil
+  - "sao paulo"
+  - mexico
+  - germany
+  - berlin
+  - france
+  - netherlands
+  - amsterdam
+  - spain
+  - madrid
+  - singapore
+  - japan
+  - tokyo
+  - "hong kong"
+  - israel
+  - "tel aviv"
+  - "south africa"
+  - johannesburg
+  - remote-international
+  - "remote (global)"
+  - emea
+  - apac
+  - latam
+  - "west coast"
+  - "san francisco"
+  - seattle
+  - "new york"
+  - "los angeles"
+  - denver
+  - chicago
+  - boston
+
+# Sources that are NOT automatable (login walls / anti-scraping ToS).
+# The pipeline logs these as 'manual search required' every run.
+manual_search_required:
+  - linkedin
+  - indeed
+  - ziprecruiter
+  - glassdoor_jobs

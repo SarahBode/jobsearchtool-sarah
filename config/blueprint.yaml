@@ -1,0 +1,74 @@
+# Sarah's Blueprint - the screening filter. Edit here to change how listings are judged.
+# Updated for digital marketing roles, in-office/hybrid near Harrisburg, PA.
+
+must_haves:
+  remote:
+    required: false                       # NOT required; hybrid/in-office acceptable
+    hybrid_acceptable: true
+    note: "Hybrid or in-office near Harrisburg, PA. Remote work not a requirement."
+  salary_floor: 50000                    # USD/yr. Hourly annualized at rate x 2080 before comparing.
+  hourly_annualize_multiplier: 2080
+  no_relocation: true
+  home_base: "Harrisburg, PA"
+  location_radius_miles: 30              # roles within 30 miles of Harrisburg
+  level:
+    acceptable: ["coordinator", "specialist", "associate", "analyst", "manager"]
+    reject_entry_level: true
+    reject_senior_executive: true
+  company_stability:
+    require_established: true
+    reject_startup: true
+  defined_scope: true
+  mission_driven:
+    required: false                       # NOT required; nice-to-have instead
+    themes:
+      - nonprofit
+      - serving people
+      - serving animals
+      - underserved communities
+
+absolute_cons:                            # ANY one present => Not a Match
+  - id: mandatory_overtime
+    label: "Mandatory overtime as standard (55+ hr weeks)"
+    signals: ["55+ hours", "mandatory overtime", "extensive overtime", "60 hour", "long hours expected"]
+  - id: required_weekend_work
+    label: "Regularly required weekend work"
+    signals: ["weekend work required", "weekends required", "must work weekends", "saturday and sunday required"]
+  - id: double_standard_culture
+    label: "Double-standard culture"
+    signals: []
+  - id: fully_remote_only
+    label: "Fully remote only (must be in-office or hybrid near Harrisburg)"
+    signals: ["fully remote", "100% remote", "remote only"]
+  - id: outside_region
+    label: "Location outside 30-mile radius of Harrisburg, PA and not hybrid/remote"
+    signals: []
+
+nice_to_haves:                            # never disqualify on absence
+  - strong benefits / PTO
+  - mission alignment (nonprofit / underserved communities)
+  - professional development / growth opportunity
+  - collaborative team environment
+  - marketing analytics / insights focus
+  - content strategy or campaign management
+  - remote flexibility options
+
+soft_cons:                                # note, do not disqualify
+  - id: high_automation_risk
+    label: "Role appears highly automatable (pure repetitive data tasks)"
+  - id: limited_marketing_focus
+    label: "Limited focus on core marketing strategy or execution"
+
+flex_recommendations:                     # the "Worth a Look" safety valve
+  # A listing that misses a must-have by a small margin, while everything else
+  # about it fits Sarah, is surfaced as "Worth a Look" instead of silently
+  # dropped. The miss is always named honestly; verdict rules are never softened.
+  enabled: true
+  salary_tolerance_pct: 10                # pay up to 10% below the floor qualifies
+                                          # when location + level + marketing focus fit
+  judgment_guidance:
+    - "Recommend only when the whole picture (location, role fit, growth path, stability) clearly outweighs the specific miss."
+    - "Never recommend a scam-flagged listing, ever."
+    - "Never recommend around mandatory overtime, required weekend work, or fully-remote-only roles - those cons exist for a reason."
+    - "Every recommendation carries a one-line honest rationale naming the miss; the original screen verdict is recorded alongside it."
+    - "Be selective: one genuinely worthwhile recommendation beats five maybes."
